@@ -5,7 +5,7 @@ import numpy
 import tensorflow
 
 # Preprocess data
-myfile = 'C:\\Users\\Alex\\Desktop\\LTC\\ltc02\\ML\\de_train-test_set.csv'
+myfile = 'C:\\Users\\Alex\\Desktop\\LTC\\ltc02\\ML\\train_set.csv'
 
 dataset = numpy.genfromtxt(myfile, delimiter=',', usecols=(0,1), dtype=str, comments=None, encoding='utf-8')
 data, labels = dataset[:, 0], dataset[:, 1]
@@ -27,13 +27,13 @@ labels = labels.astype(int)
 one_hot_labels = to_categorical(labels, num_classes=3)
 
 # Printing some debug info
-print ('\n')
-print ('Data size: ', lines, 'x', cols)
-print ('Labels size: ', len(labels))
+print('\n')
+print('Data size: ', lines, 'x', cols)
+print('Labels size: ', len(labels))
 # print (data)
 # print (labels)
 # print (one_hot_labels)
-print ('\n')
+print('\n')
 
 # A single-input model with 3 classes (categorical classification):
 model = Sequential()
@@ -44,4 +44,4 @@ model.compile(optimizer='rmsprop',
               metrics=['accuracy'])
 
 # Train the model, iterating on the data in batches
-model.fit(data, one_hot_labels, epochs=100, batch_size=16)
+model.fit(data, one_hot_labels, epochs=50, batch_size=16)
