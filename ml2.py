@@ -7,8 +7,8 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.utils import to_categorical
 import numpy
 
-# Read data; the characters are already converted into indexes (like "abc" = 1,2,3)
-# MYFILE = 'C:\\Users\\Alex\\Desktop\\LTC\\ltc02\\ML\\test1_numeric.csv'
+# Read data; the characters are already converted into indexes (like "abc" => 1,2,3)
+# MYFILE = 'test1_numeric.csv'
 # WORD_LENGTH = 18
 # UNIQUE_CHARS = 22
 MYFILE = 'train_set_numeric.csv'

@@ -5,7 +5,7 @@ import numpy
 import tensorflow
 
 # Preprocess data
-myfile = 'C:\\Users\\Alex\\Desktop\\LTC\\ltc02\\ML\\train_set.csv'
+myfile = 'train_set_words.csv'
 
 dataset = numpy.genfromtxt(myfile, delimiter=',', usecols=(0,1), dtype=str, comments=None, encoding='utf-8')
 data, labels = dataset[:, 0], dataset[:, 1]
