@@ -1,43 +1,61 @@
-# Take a CSV file with 2 columns (word,number), example: abcba,0
-# Lowercase the word and convert it into a comma-separated sequence of integers
-# Right pad it with zeros to the longest word and print, followed by number: 1,2,3,2,1,0
+# Routines for converting strings into zero-padded numeric arrays
 
-import sys
+ALPHABET_DE = {k:i for i, k in enumerate("\x00abcdefghijklmnopqrstuvwxyzäöüß-\x1A")}
+# zero index reserved for padding, last entry's index used to replace non-relevant characters
+WORD_LENGTH = 40
+UNIQUE_CHARS = 33
 
-try:
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-except IndexError:
-    sys.exit(f"Usage: {sys.argv[0]} <input file> <output file>")
+def pad_strings(lines, length):
+    '''Returns a list of strings right-padded with chr(0) to length'''
+    padded = list()
+    for line in lines:
+        # pads string with chr(0)
+        padded.append(line.ljust(length, chr(0)))
+    return padded
 
-uniques = list(chr(0))
-max_len = 0
-output = ""
+def unique_chars_dict(lines):
+    '''Returns a dictionary of enumerated unique characters in a list of strings.'''
+    unique_chars = list(set("".join(lines)))
+    unique_chars.sort()
+    out_dict = {char: unique_chars.index(char) for char in unique_chars}
+    return out_dict
 
-# read file, convert to lower case and split into 2 columns
-with open(input_file, "rt") as f:
-    fcontents = [line.lower().split(",") for line in f.read().splitlines()]
+def char_freqs(lines):
+    '''Returns the dict with character frequencies in a list of strings'''
+    unique_chars = list(set("".join(lines)))
+    unique_chars.sort()
+    out_dict = {char: 0 for char in unique_chars}
+    for line in lines:
+        for char in line:
+            out_dict[char] += 1
+    return out_dict
 
-# build characters dict
-for (col1, col2) in fcontents:
-    for ch in col1:
-        if ch not in uniques:
-            uniques.append(ch)
-    if len(col1) > max_len:
-        max_len = len(col1)
-uniques.sort()
-uniques_dict = {ch: uniques.index(ch) for ch in uniques}
+def chars_to_indexes(smth, chars_dict, max_length):
+    '''Replaces string characters by their numbers using chars_dict, result is comma-separated.'''
+    if isinstance(smth, list):
+        out_list = list()
+        for line in smth:
+            out_list.append(chars_to_indexes(line, chars_dict, max_length))
+    if isinstance(smth, str):
+        out_str = ""
+        smth = smth[0:max_length]
+        smth = smth.ljust(max_length, chr(0))
+        for char in smth:
+            # the index of last entry in the dict is used for non-matching chars
+            out_str += str(chars_dict.get(char, len(chars_dict)-1)) + ","
+        out_str = out_str.rstrip(",")
+        return out_str
+    return out_list
 
-print("max word length:", max_len)
-print("unique characters:", len(uniques_dict))
-print(uniques_dict)
 
-# pad lines with zeros, convert chars and print the result
-for (col1, col2) in fcontents:
-    col1 = col1.ljust(max_len, chr(0))
-    for ch in col1:
-        output += str(uniques_dict[ch]) + ","
-    output += col2 + "\n"
+# Run unit tests
+if __name__ == "__main__":
+    pass
 
-with open(output_file, "wt") as f:
-    f.write(output)
+# dict1 = {"a":"1","b":"2","c":"3"}
+# str1 = ["abc","cba","bca"]
+# print(chars_to_indexes(str1, dict1))
+
+# str2 = "abcЯä"
+# dict2 = unique_chars_dict(str2)
+# print(dict2)
