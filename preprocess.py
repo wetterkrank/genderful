@@ -1,9 +1,10 @@
 # Routines for converting strings into zero-padded numeric arrays
 
-ALPHABET_DE = {k:i for i, k in enumerate("\x00abcdefghijklmnopqrstuvwxyzäöüß-\x1A")}
 # zero index reserved for padding, last entry's index used to replace non-relevant characters
+ALPHABET_DE = {k:i for i, k in enumerate("\x00abcdefghijklmnopqrstuvwxyzäöüß-\x1A")}
 WORD_LENGTH = 40
 UNIQUE_CHARS = 33
+GENDERS = {0:"female", 1:"male", 2:"neutral"}
 
 def pad_strings(lines, length):
     '''Returns a list of strings right-padded with chr(0) to length'''
@@ -48,14 +49,6 @@ def chars_to_indexes(smth, chars_dict, max_length):
     return out_list
 
 
-# Run unit tests
+# TODO: Add unit tests
 if __name__ == "__main__":
     pass
-
-# dict1 = {"a":"1","b":"2","c":"3"}
-# str1 = ["abc","cba","bca"]
-# print(chars_to_indexes(str1, dict1))
-
-# str2 = "abcЯä"
-# dict2 = unique_chars_dict(str2)
-# print(dict2)
