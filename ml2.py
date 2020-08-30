@@ -1,3 +1,6 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 for max verbosity
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Bidirectional
@@ -13,7 +16,6 @@ WORD_LEN = prep.WORD_LENGTH
 UNIQUE_CHARS = prep.UNIQUE_CHARS
 DATA_FILE = './/data//dataset_3percent_num.csv'
 MODEL_FILE = './/models//model.h5'
-
 
 class OH_Dataset:
     """Four one-hot encoded Keras sets of training/testing data and labels"""
@@ -45,7 +47,6 @@ class OH_Dataset:
 
 def train_model(dset):
 
-    # Model v3
     model = Sequential()
     model.add(Dense(256, input_shape=(WORD_LEN, UNIQUE_CHARS)))
     model.add(Bidirectional(LSTM(128, return_sequences=True)))
@@ -80,22 +81,25 @@ def predict(model, word):
     w_seq_oh = numpy.reshape(w_seq_oh, (1, WORD_LEN, UNIQUE_CHARS))
 
     probs = model.predict(w_seq_oh, verbose=1)
+    gender = prep.GENDERS.get(numpy.argmax(probs))
     print(probs)
-    gender = prep.GENDERS.get(model.predict_classes(w_seq_oh, verbose=1)[0])
     return gender
 
 
 if __name__ == "__main__":
+
     try:
         mode = sys.argv[1]
     except IndexError:
-        sys.exit(f"Usage: {sys.argv[0]} <--train|--use>")
+        sys.exit(f"Usage: {sys.argv[0]} --train|--use")
     
     if mode == "--train":
         dataset = OH_Dataset(DATA_FILE)
         genders_model = train_model(dataset)
     elif mode == "--use":
+        dataset = OH_Dataset(DATA_FILE)
         genders_model = load_model(MODEL_FILE)
+        genders_model.evaluate(dataset.oh_testdata, dataset.oh_testlabels)
         print("Enter a German word, empty line to exit:")
         while True:
             line = input('> ')
@@ -103,4 +107,4 @@ if __name__ == "__main__":
                 break
             print(predict(genders_model, line))
     else:
-        sys.exit(f"Usage: {sys.argv[0]} <--train|--use>")
+        sys.exit(f"Usage: {sys.argv[0]} --train|--use")
