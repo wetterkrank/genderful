@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Machine learning, neural networks exercise">
+    <meta name="author" content="Alex Antsiferov">
+
+    <title>Predicting German noun genders using machine learning</title>
+    <link rel="canonical" href="http://yak.supplies">
+
+    <!-- Bootstrap CSS/JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="script.js"></script>
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">Genderful</a>
+      </nav>
+    </header>
+    
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+        <h1 class="mt-5">Predicting German noun genders using machine learning</h1>
+        <p class="lead">Built for fun with Python and Tensorflow+Keras (<a href="" data-toggle="modal" data-target=".bd-example-modal-lg">click here</a> to see the model details).</p>
+        <p>Try entering a German word below (it doesn't have to be a real word in fact):</p>
+        <form id="predict-form" class="form-inline mt-2 mt-md-0">
+          <input required name="predict-input" class="form-control col-lg-4 mr-sm-2" type="text" aria-label="Predict">
+          <button name="predict-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Predict gender
+            <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+          </button>
+        </form>
+        <div id="results" class="mt-3" hidden>
+          <p id="results-header">Result:</p>
+          <ul id="results-list">
+            <!-- <li>Etwas: unknöwn (0.5863201)</li> -->
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Model parameters</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <pre><code>
+                model = Sequential()
+                model.add(Dense(256, input_shape=(WORD_LEN, UNIQUE_CHARS)))
+                model.add(Bidirectional(LSTM(128, return_sequences=True)))
+                model.add(Bidirectional(LSTM(32)))
+                model.add(Dense(3, activation='softmax'))
+                model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
+              </code></pre>
+              <p>The model was trained on 7000 random words (about 2.5% of the <a href="https://www.dict.cc/">dictionary</a>), with another 2000 words used for evaluation. The accuracy of the model is 85%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="network-info" hidden>
+      </div>
+    </main>
+
+    <!-- Sticky footer, requires html class="h-100" -->
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Copyright © 2020 Alex Antsiferov</span>
+      </div>
+    </footer>
+
+  </body>
+</html>
