@@ -30,7 +30,7 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0">
       <div class="container">
-        <h1 class="mt-5">Predicting German noun genders using machine learning</h1>
+        <h2 class="mt-5">Predicting German noun genders using machine learning</h2>
         <p class="lead">Built for fun with Python and Tensorflow+Keras (<a href="" data-toggle="modal" data-target=".bd-example-modal-lg">click here</a> to see the model details).</p>
         <p>Try entering a German word below (it doesn't have to be a real word in fact):</p>
         <form id="predict-form" class="form-inline mt-2 mt-md-0">
@@ -66,7 +66,7 @@
                 model.add(Dense(3, activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
               </code></pre>
-              <p>The model was trained on 7000 random words (about 2.5% of the <a href="https://www.dict.cc/">dictionary</a>), with another 2000 words used for evaluation. The accuracy of the model is 85%.</p>
+              <p>The model is trained on 7000 random words (about 2.5% of the <a href="https://www.dict.cc/">dictionary</a>), with another 2000 words used for evaluation. The accuracy of the model is 85%.</p>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
     <!-- Sticky footer, requires html class="h-100" -->
     <footer class="footer mt-auto py-3">
       <div class="container">
-        <span class="text-muted">Copyright © 2020 Alex Antsiferov</span>
+        <span class="text-muted">Copyright © 2020 Alex Antsiferov (<a href="https://github.com/wetterkrank/ML-Study">GitHub</a>, <a href="https://www.linkedin.com/in/antsiferov/">LinkedIn</a>)</span>
       </div>
     </footer>
 
