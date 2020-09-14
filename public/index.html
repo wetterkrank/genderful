@@ -30,17 +30,17 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0">
       <div class="container">
-        <h2 class="mt-5">Predicting German noun genders using machine learning</h2>
-        <p class="lead">Built for fun with Python and Tensorflow+Keras (<a href="" data-toggle="modal" data-target=".bd-example-modal-lg">click here</a> to see the model details).</p>
-        <p>Try entering a German word below (it doesn't have to be a real word in fact):</p>
+        <h2 class="mt-5">Predicting German noun genders with machine learning</h2>
+        <p class="lead">Built for fun using Python and Tensorflow+Keras (<a href="" data-toggle="modal" data-target=".bd-example-modal-lg">model details</a>).</p>
+        <p class="mt-4">Try entering a German word below (doesn't have to be a real word):</p>
         <form id="predict-form" class="form-inline mt-2 mt-md-0">
-          <input required name="predict-input" class="form-control col-lg-4 mr-sm-2" type="text" aria-label="Predict">
+          <input required autofocus name="predict-input" class="form-control col-lg-4 mr-sm-2" type="text" aria-label="Predict">
           <button name="predict-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Predict gender
             <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
           </button>
         </form>
         <div id="results" class="mt-3" hidden>
-          <p id="results-header">Result:</p>
+          <p id="results-header">Result (probability):</p>
           <ul id="results-list">
             <!-- <li>Etwas: unknöwn (0.5863201)</li> -->
           </ul>
@@ -58,15 +58,14 @@
               </button>
             </div>
             <div class="modal-body">
-              <pre><code>
-                model = Sequential()
+              <pre class="ml-3"><code>model = Sequential()
                 model.add(Dense(256, input_shape=(WORD_LEN, UNIQUE_CHARS)))
                 model.add(Bidirectional(LSTM(128, return_sequences=True)))
                 model.add(Bidirectional(LSTM(32)))
                 model.add(Dense(3, activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
               </code></pre>
-              <p>The model is trained on 7000 random words (about 2.5% of the <a href="https://www.dict.cc/">dictionary</a>), with another 2000 words used for evaluation. The accuracy of the model is 85%.</p>
+              <p>The model is trained on 7000 random words (about 2.5% of the <a href="https://www.dict.cc/">dictionary</a>), with another 2000 words used for evaluation.<br>The accuracy is 85%.</p>
             </div>
           </div>
         </div>

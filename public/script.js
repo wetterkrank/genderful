@@ -15,6 +15,7 @@ async function submitWord(event) {
     event.preventDefault();
     let word = event.target.elements['predict-input'].value;
     if (word) {
+        event.target.elements['predict-input'].value = '';
         document.getElementById('spinner').removeAttribute('hidden');
         word = encodeURIComponent(word)
         let response = await fetch(`/predict?word=${word}`);

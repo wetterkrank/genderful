@@ -1,10 +1,10 @@
-# Routines for converting strings into zero-padded numeric arrays
+# Routines for converting strings into zero-padded numeric arrays; some basic constants
 
 # zero index reserved for padding, last entry's index used to replace non-relevant characters
 ALPHABET_DE = {k:i for i, k in enumerate("\x00abcdefghijklmnopqrstuvwxyzäöüß-\x1A")}
 WORD_LENGTH = 40
 UNIQUE_CHARS = 33
-GENDERS = {0:"female", 1:"male", 2:"neutral"}
+GENDERS = {0:"feminine", 1:"masculine", 2:"neutral"}
 
 def pad_strings(lines, length):
     '''Returns a list of strings right-padded with chr(0) to length'''

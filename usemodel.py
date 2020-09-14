@@ -34,7 +34,7 @@ class Predictor():
 if __name__ == "__main__":
     genders_model = Predictor()
 
-    print("Enter a German word, empty line to exit:")
+    print("Enter a German word, or empty line to exit:")
     while True:
         line = input('> ')
         if not line: 
