@@ -17,6 +17,8 @@
     
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="script.js"></script>
+
+    <script src="https://kit.fontawesome.com/caad1d89bb.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="d-flex flex-column h-100">
@@ -34,7 +36,7 @@
         <p class="lead">Built for fun using Python and Tensorflow+Keras (<a href="" data-toggle="modal" data-target=".bd-example-modal-lg">model details</a>).</p>
         <p class="mt-4">Try entering a German word below (doesn't have to be a real word):</p>
         <form id="predict-form" class="form-inline mt-2 mt-md-0">
-          <input required autofocus name="predict-input" class="form-control col-lg-4 mr-sm-2" type="text" aria-label="Predict">
+          <input required autofocus name="predict-input" class="form-control col-sm-6 col-lg-4 mr-sm-2" type="text" aria-label="Predict">
           <button name="predict-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Predict gender
             <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
           </button>
@@ -58,7 +60,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <pre class="ml-3"><code>model = Sequential()
+              <pre class="ml-3"><code>model = tensorflow.keras.models.Sequential()
                 model.add(Dense(256, input_shape=(WORD_LEN, UNIQUE_CHARS)))
                 model.add(Bidirectional(LSTM(128, return_sequences=True)))
                 model.add(Bidirectional(LSTM(32)))
@@ -78,7 +80,7 @@
     <!-- Sticky footer, requires html class="h-100" -->
     <footer class="footer mt-auto py-3">
       <div class="container">
-        <span class="text-muted">Copyright © 2020 Alex Antsiferov (<a href="https://github.com/wetterkrank/ML-Study">GitHub</a>, <a href="https://www.linkedin.com/in/antsiferov/">LinkedIn</a>)</span>
+        <span><a href="https://github.com/wetterkrank/ML-Study"><i class="fab fa-github"></i></a> <a href="https://www.linkedin.com/in/antsiferov/"><i class="fab fa-linkedin"></i></a></span>
       </div>
     </footer>
 
