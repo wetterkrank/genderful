@@ -9,18 +9,15 @@
     <title>Predicting German noun genders using machine learning</title>
     <link rel="canonical" href="http://yak.supplies">
 
-    <!-- Bootstrap CSS/JS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="script.js"></script>
-
+    
     <script src="https://kit.fontawesome.com/caad1d89bb.js" crossorigin="anonymous"></script>
   </head>
-
+  
   <body class="d-flex flex-column h-100">
     <header>
       <!-- Fixed navbar -->
@@ -47,9 +44,9 @@
             <!-- <li>Etwas: unknöwn (0.5863201)</li> -->
           </ul>
         </div>
-
+        
       </div>
-
+      
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -72,17 +69,24 @@
           </div>
         </div>
       </div>
-
+      
       <div id="network-info" hidden>
       </div>
     </main>
-
+    
     <!-- Sticky footer, requires html class="h-100" -->
     <footer class="footer mt-auto py-3">
       <div class="container">
         <span><a href="https://github.com/wetterkrank/ML-Study"><i class="fab fa-github"></i></a> <a href="https://www.linkedin.com/in/antsiferov/"><i class="fab fa-linkedin"></i></a></span>
       </div>
     </footer>
-
+  
+    <!-- Bootstrap JS and dependecies -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="bootstrap/jquery-3.5.1.slim.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    
   </body>
-</html>
+  </html>
+  
