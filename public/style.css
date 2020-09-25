@@ -18,6 +18,11 @@ main > .container {
     color: #343a40;
   }
 
+  footer i {
+    font-size: larger;
+    letter-spacing: 0.4rem;
+  }
+
   ul {
     padding-left: 10px;
   }

@@ -15,15 +15,18 @@ async function submitWord(event) {
     event.preventDefault();
     let word = event.target.elements['predict-input'].value;
     if (word) {
-        event.target.elements['predict-input'].value = '';
         document.getElementById('spinner').removeAttribute('hidden');
         word = encodeURIComponent(word)
         let response = await fetch(`/predict?word=${word}`);
         let json = await response.json();
         document.getElementById('spinner').setAttribute('hidden', '');
+        event.target.elements['predict-input'].value = '';
         // console.log(json);
         if (json['word']) {
             let resultsEntry = `${json['word']}: ${json['gender']} (${json['probability']})`;
+            printResult(resultsEntry)
+        } else {
+            let resultsEntry = `An error occured.`;
             printResult(resultsEntry)
         }
     }
