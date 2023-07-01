@@ -1,8 +1,8 @@
 FROM tensorflow/tensorflow
 
-WORKDIR /usr/src/app 
+WORKDIR /usr/src/app
 COPY . .
 
 RUN python3 -m pip install --no-cache-dir -r ./requirements.txt
 
-CMD [ "python3", "./server.py", "--port", "8081" ]
+CMD [ "python3", "./server.py", "--port", "80" ]
